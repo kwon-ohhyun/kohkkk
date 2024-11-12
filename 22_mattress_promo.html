@@ -1,0 +1,157 @@
+<head>
+    <meta charset="UTF-8">
+    <title>2022. 12. 자사몰 매트리스 프로모션</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<script>
+    class StickyNavigation {
+        
+        constructor() {
+            this.currentId = null;
+            this.currentTab = null;
+            this.tabContainerHeight = 70;
+            let self = this;
+            $('.et-hero-tab').click(function() { 
+                self.onTabClick(event, $(this)); 
+            });
+                $(window).scroll(() => { this.onScroll(); });
+                $(window).resize(() => { this.onResize(); });
+            }
+            
+            onTabClick(event, element) {
+                event.preventDefault();
+                let scrollTop = $(element.attr('href')).offset().top - this.tabContainerHeight + 1;
+                $('html, body').animate({ scrollTop: scrollTop }, 600);
+            }
+            
+            onScroll() {
+                this.checkTabContainerPosition();
+                this.findCurrentTabSelector();
+            }
+            
+            onResize() {
+                if(this.currentId) {
+                    this.setSliderCss();
+                }
+            }
+            
+            checkTabContainerPosition() {
+            let offset = $('.et-hero-tabs').offset().top + $('.et-hero-tabs').height() - this.tabContainerHeight;
+            let mimg = $('#sec_1').offset().top;
+            if($(window).scrollTop() > offset) {
+                // $('.et-hero-tabs-container').addClass('et-hero-tabs-container--top');
+                $('.et-hero-tabs').addClass('et-hero-tabs--top');
+            } else {
+                console.log($(window).scrollTop());
+                console.log(mimg);
+            }
+            if($(window).scrollTop() < mimg) {
+                $('.et-hero-tabs').removeClass('et-hero-tabs--top');
+            }
+        
+        }
+        
+        findCurrentTabSelector(element) {
+            let newCurrentId;
+            let newCurrentTab;
+            let self = this;
+            $('.et-hero-tab').each(function() {
+                let id = $(this).attr('href');
+                let offsetTop = $(id).offset().top - self.tabContainerHeight;
+                let offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
+                if($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
+                    newCurrentId = id;
+                    newCurrentTab = $(this);
+
+                    $('.et-hero-tab').removeClass('on');
+                    $(this).addClass('on');
+                }
+            });
+            if(this.currentId != newCurrentId || this.currentId === null) {
+                this.currentId = newCurrentId;
+                this.currentTab = newCurrentTab;
+                this.setSliderCss();
+            }
+        }
+        setSliderCss() {
+            let width = 0;
+            let left = 0;
+            if(this.currentTab) {
+                width = this.currentTab.css('width');
+                // left = this.currentTab.offset().left;
+                left = this.currentTab[0].offsetLeft;
+                // console.log(left);
+                // console.log(this.currentTab.offset());
+                // console.log(this.currentTab[0].offsetLeft);
+            }
+            $('.et-hero-tab-slider').css('width', width);
+            $('.et-hero-tab-slider').css('left', left);
+        }
+        
+    }
+
+    new StickyNavigation();
+</script>
+<style>
+    .n_wrap { width: 100%; }
+    .n_wrap * { margin: 0; padding: 0; }
+    .n_wrap img { max-width: 1920px; border: 0; width: 100%; }
+    .n_wrap li { list-style: none; float:left; }
+    .link_box { position: absolute; /*background: #aa0000; opacity: 0.3;*/} 
+
+    .et-hero-tabs { width: 100%; background: #000; border-bottom: solid 1px #a3a3a3;}
+    .et-hero-tabs--top { position: fixed; top: 0; left: 0; z-index: 9; }
+    .et-hero-tabs-container { display: flex; flex-direction: row; max-width: 1200px; width: 100%; height: 70px;  background: #000; z-index: 10; }
+    .et-hero-tabs-container--top { position: fixed; top: 0; transform: translate(-50%, 0); left: 50%; }
+    .et-hero-tab { display: flex; justify-content: center; align-items: center; flex: 1; color: #9a9a9a; letter-spacing: 0.1rem; transition: all 0.5s ease; font-size: 1.2rem; font-weight: normal; }
+    .et-hero-tab.on { color:#fff; font-weight: bold; }
+    .et-hero-tab:hover { color:#fff; font-weight: bold; }
+    .et-hero-tab-slider { position: absolute; bottom: 0; width: 0; background: #fff; height: 6px; transition: left 0.3s ease; }
+    
+    .sec { position: relative; }
+    .sec.sec_1 { background: #ececec; }
+    .sec.sec_4 { background: #f3ede1; }
+    .goods_box1-1 { width: 2.5%; height: 2%; left: 44.88%; top: 55.3%; }
+    .goods_box1-2 { width: 2.5%; height: 2%; left: 68.88%; top: 55.3%; }
+    .goods_box1-3 { width: 2.5%; height: 2%; left: 56.88%; top: 64.27%; }
+</style>
+
+<center>
+    <div class="n_wrap">
+        <img src="D:\works\promotion\22_mattress\promo_pc_01.gif">
+        <section class="et-hero-tabs">
+            <div class="et-hero-tabs-container">
+                <a class="et-hero-tab" href="#sec_2">슬린 매트리스</a>
+                <a class="et-hero-tab" href="#sec_3">보에르 매트리스</a>
+                <a class="et-hero-tab" href="#sec_4">무료체험 + 내림 서비스</a>
+                <span class="et-hero-tab-slider"></span>
+            </div>
+        </section>
+        <section class="sec sec_1" id="sec_1">
+            <div style="position: relative;"> 
+                <a onclick="javascript:couponLinkDown('1467');" href="#;" class="link_box goods_box1-1"></a>
+                <a onclick="javascript:couponLinkDown('1466');" href="#;" class="link_box goods_box1-2"></a>
+                <a onclick="javascript:couponLinkDown('1464');" href="#;" class="link_box goods_box1-3"></a>
+                <img src="D:\works\promotion\22_mattress\promo_pc_02.jpg">
+            </div>
+        </section>
+    </div>
+</center>
+<script> 
+$(document).ready(function () {
+    $(".main_wrap_4022605").attr('id', 'sec_2');
+    $(".main_wrap_4022606").attr('id', 'sec_3');
+
+    $(".info_more_btn").click(function(){
+        $(this).toggleClass("active");
+        var panel = $(".more_info_box").prop("scrollHeight");
+        if($(this).hasClass("active")) {
+            $(".more_info_box").attr("style", "max-height : "+panel+"px");
+            $(".more_info_box").css("padding", "0px 100px 50px");
+        } else {
+            $(".more_info_box").attr("style", "max-height : null");
+        }
+    });
+});
+</script>

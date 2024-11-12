@@ -1,0 +1,96 @@
+<head>
+    <meta charset="UTF-8">
+    <title>2023. 2. 자사몰 웨딩 프로모션</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<style>
+/** {margin: 0; padding: 0}*/
+.n_wrap { width: 100%; background-color:#ffffff; }
+.n_wrap * { margin: 0; padding: 0; line-height: 0; }
+.n_wrap img { max-width: 100%; border: 0; }
+.n_wrap li { list-style: none; float: left; line-height: 0; }
+.n_contents { width: 100%; max-width: 100%; position: relative; }
+.n_contents img { margin: 0; padding: 0; vertical-align: top; line-height: 0; border: 0; }
+.n_contents_navi img { float: left; }
+
+.p_tab_box { position: relative; }	
+.link_box { position: absolute; /*background: #aa0000;*/ opacity: 0.3; }
+	
+.goods_box1-1 { width: 7.9%; height: 1.58%; left: 61.32%;  top: 29.43%; }
+.goods_box1-2 { width: 9.5%; height: 1.58%; left: 69.75%;  top: 29.43%; }
+	
+.p_tab_0_1 {width: 14.6%; height: 3.77%; left: 13.16%; top: 0;}
+.p_tab_0_2 {width: 14.6%; height: 3.77%; left: 27.9%; top: 0;}
+.p_tab_0_3 {width: 14.6%; height: 3.77%; left: 42.66%; top: 0;}	
+.p_tab_0_4 {width: 14.6%; height: 3.77%; left: 57.44%; top: 0;}
+.p_tab_0_5 {width: 14.6%; height: 3.77%; left: 72.3%; top: 0;}
+
+.p_tab_1_1 {width: 14.6%; height: 100%; left: 13.16%; top: 0;}
+.p_tab_1_2 {width: 14.6%; height: 100%; left: 27.9%; top: 0;}
+.p_tab_1_3 {width: 14.6%; height: 100%; left: 42.66%; top: 0;}	
+.p_tab_1_4 {width: 14.6%; height: 100%; left: 57.44%; top: 0;}
+.p_tab_1_5 {width: 14.6%; height: 100%; left: 72.3%; top: 0;}	
+	
+.p_tab_2_1 {width: 14.6%; height: 100%; left: 13.16%; top: 0;}
+.p_tab_2_2 {width: 14.6%; height: 100%; left: 27.9%; top: 0;}
+.p_tab_2_3 {width: 14.6%; height: 100%; left: 42.66%; top: 0;}	
+.p_tab_2_4 {width: 14.6%; height: 100%; left: 57.44%; top: 0;}
+.p_tab_2_5 {width: 14.6%; height: 100%; left: 72.3%; top: 0;}
+
+.p_tab_3_1 {width: 14.6%; height: 100%; left: 13.16%; top: 0;}
+.p_tab_3_2 {width: 14.6%; height: 100%; left: 27.9%; top: 0;}
+.p_tab_3_3 {width: 14.6%; height: 100%; left: 42.66%; top: 0;}	
+.p_tab_3_4 {width: 14.6%; height: 100%; left: 57.44%; top: 0;}
+.p_tab_3_5 {width: 14.6%; height: 100%; left: 72.3%; top: 0;}
+	
+.p_tab_4_1 {width: 14.6%; height: 100%; left: 13.16%; top: 0;}
+.p_tab_4_2 {width: 14.6%; height: 100%; left: 27.9%; top: 0;}
+.p_tab_4_3 {width: 14.6%; height: 100%; left: 42.66%; top: 0;}	
+.p_tab_4_4 {width: 14.6%; height: 100%; left: 57.44%; top: 0;}
+.p_tab_4_5 {width: 14.6%; height: 100%; left: 72.3%; top: 0;}
+	
+.p_tab_5_1 {width: 14.6%; height: 100%; left: 13.16%; top: 0;}
+.p_tab_5_2 {width: 14.6%; height: 100%; left: 27.9%; top: 0;}
+.p_tab_5_3 {width: 14.6%; height: 100%; left: 42.66%; top: 0;}	
+.p_tab_5_4 {width: 14.6%; height: 100%; left: 57.44%; top: 0;}
+.p_tab_5_5 {width: 14.6%; height: 100%; left: 72.3%; top: 0;}	
+</style>
+
+<center>  
+	<div class="n_wrap">
+    	<div class="n_contents">
+       		<img width="100%" src="D:/works/promotion/23_wedding/pc_wedding_promo_01.jpg">
+		
+        <div style="position: relative;">
+		<div class="sec sec_0" id="sec_0">			
+			<a href="#sec_1" class="link_box p_tab_0_1"></a>
+			<a href="#sec_2" class="link_box p_tab_0_2"></a>
+			<a href="#sec_3" class="link_box p_tab_0_3"></a>
+			<a href="#sec_4" class="link_box p_tab_0_4"></a>
+			<a href="#sec_5" class="link_box p_tab_0_5"></a>				
+        	<img width="100%" src="D:/works/promotion/23_wedding/pc_wedding_promo_02.jpg">
+				
+        	<a href="https://www.emonshome.co.kr/member/join_method.php" class="link_box goods_box1-1"></a>
+        	<a href="https://www.emonshome.co.kr/mypage/mypage_qa.php" class="link_box goods_box1-2"></a>				
+       		<img width="100%" src="D:/works/promotion/23_wedding/pc_wedding_promo_03.jpg">
+		</div>
+		</div>
+		</div>
+		</div>
+</center>
+<script> 
+$(document).ready(function () {
+    $(".info_more_btn").click(function(){
+        $(this).toggleClass("active");
+        var findsec = $(this).parents(".sec");
+        var panel = findsec.children(".more_info_box").prop("scrollHeight");
+        if($(this).hasClass("active")) {
+            findsec.children(".more_info_box").attr("style", "max-height : "+panel+"px");
+            findsec.children(".more_info_box").css("padding", "50px 50px");
+        } else {
+            findsec.children(".more_info_box").attr("style", "max-height : null");
+        }
+    });
+});
+</script>
